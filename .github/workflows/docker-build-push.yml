@@ -25,4 +25,4 @@ jobs:
           context: .
           push: true
           file: ./docker/prod.Dockerfile
-          tags: imeshmadhuranga/captable-app:latest  # Replace 'my-app' with your image name
+          tags: ghcr.io/imeshmadhuranga/captable-app:latest  # Replace 'my-app' with your image name
