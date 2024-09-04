@@ -2,9 +2,8 @@ name: captable
 services:
   app:
     build:
-      target: deps
       context: .
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/prod.Dockerfile
     container_name: captable-app
     depends_on:
       - pg
@@ -16,18 +15,17 @@ services:
     env_file:
       - ".env"
     working_dir: /app
-    command: [/bin/sh, -c, "pnpm install && pnpm dev"]
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
-      - /app/.pnpm-store
+    command: [/bin/sh, -c, "pnpm start"]
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    #   - /app/.next
+    #   - /app/.pnpm-store
 
   studio:
     build:
-      target: deps
       context: .
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/prod.Dockerfile
     container_name: captable-studio
     depends_on:
       - pg
@@ -40,11 +38,11 @@ services:
       - ".env"
     working_dir: /app
     command: [/bin/sh, -c, "pnpm install && pnpm db:studio"]
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
-      - /app/.pnpm-store
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    #   - /app/.next
+    #   - /app/.pnpm-store
 
   pg:
     image: postgres:15
